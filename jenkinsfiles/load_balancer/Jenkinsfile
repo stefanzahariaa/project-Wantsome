@@ -4,7 +4,7 @@ pipeline{
       stage('Login server'){
          steps{
             sshagent(credentials:['environment']){
-               sh 'ssh  -o StrictHostKeyChecking=no  environment@192.168.56.11 uptime "whoami"'
+               sh 'ssh  -o StrictHostKeyChecking=no  environment uptime "whoami"'
           }
         echo "Success login"
          }
