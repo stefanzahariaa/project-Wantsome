@@ -1,3 +1,14 @@
+pipeline{
+    agent any
+    stages('Login server'){
+      steps{
+          sshahent (credentials:['environment_server']){
+            sh 'ssh  -o StrictHostKeyChecking=no  environment@192.168.56.11 uptime "whoami"'
+      }
+          echo "Succes login"
+      }
+    }
+    }
 node{
     def app
     stage('Clone repository'){
@@ -21,15 +32,5 @@ node{
     stage('Pushing to dockerhub'){
           sh 'docker push stefanzaharia93/load_balancer:latest'
       }
-pipeline{
-    agent any
-    stages('Login server'){
-      steps{
-          sshahent (credentials:['environment_server']){
-            sh 'ssh  -o StrictHostKeyChecking=no  environment@192.168.56.11 uptime "whoami"'
-      }
-          echo "Succes login"
-      }
-    }
-    }
+
 }
