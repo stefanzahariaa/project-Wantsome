@@ -21,11 +21,13 @@ node{
     stage('Pushing to dockerhub'){
           sh 'docker push stefanzaharia93/load_balancer:latest'
       }
-    stage('Deploy'){
-            ssh 192.168.56.11
-            docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
-            image = docker.image('stefanzaharia93/load_balancer:latest')
-            image.pull()
+    stage('Login server'){
+      steps{
+          sshahent (credentials:['environment_server']){
+            sh 'ssh  -o StrictHostKeyChecking=no  environment@192.168.56.11 uptime "whoami"'
+      }
+          echo "Succes login"
+      }
     }
     }
 
