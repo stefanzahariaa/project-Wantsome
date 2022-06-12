@@ -1,14 +1,16 @@
 pipeline{
-    agent any
-    stages('Login server'){
-      steps{
-          sshahent (credentials:['environment_server']){
-            sh 'ssh  -o StrictHostKeyChecking=no  environment@192.168.56.11 uptime "whoami"'
-      }
-          echo "Succes login"
-      }
-    }
-    }
+   agent any
+   stages{
+      stage('Login server'){
+         steps{
+            sshagent(credentials:['environment']){
+               sh 'ssh  -o StrictHostKeyChecking=no  environment@192.168.56.11 uptime "whoami"'
+          }
+        echo "Success login"
+         }
+       }
+   }
+}
 node{
     def app
     stage('Clone repository'){
