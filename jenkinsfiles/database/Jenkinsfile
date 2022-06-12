@@ -11,7 +11,7 @@ node{
  }
 
     stage('Build image'){
-      app = docker.build("database2")
+      app = docker.build("database2", "./dockerfiles/database")
   }
     stage('login'){
         
