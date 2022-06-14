@@ -4,7 +4,7 @@ pipeline{
       stage('Login server'){
          steps{
             sshagent(credentials:['environment_server']){
-               sh 'ssh -t root@192.168.56.11'
+               sh 'ssh -T root@192.168.56.11'
           }
         echo "Success login"
          }
