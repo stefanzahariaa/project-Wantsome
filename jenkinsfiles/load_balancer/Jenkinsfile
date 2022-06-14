@@ -1,16 +1,3 @@
-pipeline{
-   agent any
-   stages{
-      stage('Login server'){
-         steps{
-            sshagent(credentials:['environment-server']){
-               sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11'
-          }
-        echo "Success login"
-         }
-       }
-   }
-}
 node{
     def app
     stage('Clone repository'){
@@ -38,6 +25,7 @@ node{
          steps{
             sshagent(credentials:['environment-server']){
                sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11'
+               sh 'docker pull stefanzaharia93/load_balancer:latest'
           }
         echo "Success deploy!"
          }
