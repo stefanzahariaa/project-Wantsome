@@ -20,15 +20,19 @@ node{
     }
     stage('Pushing to dockerhub'){
           sh 'docker push stefanzaharia93/load_balancer:latest'
-      }
-   stage('Deploy'){
+      } 
+}
+pipeline{
+   agent any
+   stages{
+      stage('Deploy'){
          steps{
             sshagent(credentials:['environment-server']){
                sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11'
                sh 'docker pull stefanzaharia93/load_balancer:latest'
           }
-        echo "Success deploy!"
+        echo "Success login"
          }
        }
-
+   }
 }
