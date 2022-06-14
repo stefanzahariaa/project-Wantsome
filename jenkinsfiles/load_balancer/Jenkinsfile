@@ -31,7 +31,7 @@ pipeline{
                sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11'
                sh 'docker pull stefanzaharia93/load_balancer:latest'
           }
-        echo "Success login"
+        echo "Success deploy"
          }
        }
    }
