@@ -13,7 +13,7 @@ node{
     stage('Build image'){
       app = docker.build("database2", "./dockerfiles/database")
   }
-    stage('login'){
+    stage('Login'){
         
           sh 'docker login -u stefanzaharia93 -p 2c5f6afe-b64a-4a7a-bd99-58f0c92a7781'
 
@@ -22,4 +22,18 @@ node{
           sh 'docker push stefanzaharia93/database2:latest'
       }
     }
+pipeline{
+   agent any
+   stages{
+      stage('Deploy'){
+         steps{
+            sshagent(credentials:['environment-server']){
+               sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11'
+               sh 'docker pull stefanzaharia93/database2:latest'
+          }
+        echo "Success deploy"
+         }
+       }
+   }
+}
 
