@@ -26,7 +26,7 @@ node{
     stage('Build image'){
       app = docker.build("load_balancer", "./dockerfiles/load_balancer")
   }
-    stage('login'){
+    stage('Login'){
         
           sh 'docker login -u stefanzaharia93 -p 2c5f6afe-b64a-4a7a-bd99-58f0c92a7781'
 
@@ -38,9 +38,8 @@ node{
          steps{
             sshagent(credentials:['environment-server']){
                sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11'
-               sh 'docker pull stefanzaharia93/load_balancer:latest'
           }
-        echo "Success login"
+        echo "Success deploy!"
          }
        }
 
