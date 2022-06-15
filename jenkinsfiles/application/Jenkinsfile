@@ -20,6 +20,7 @@ node{
     }
     stage('Pushing to dockerhub'){
           sh 'docker push stefanzaharia93/application2:latest'
+          sh 'docker tag application2:latest stefanzaharia93/application2:latest'
       }
     }
   pipeline{
