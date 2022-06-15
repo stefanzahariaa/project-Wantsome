@@ -19,7 +19,7 @@ node{
 
     }
     stage('Pushing to dockerhub'){
-          sh 'docker push load_balancer:latest'
+          sh 'docker push stefanzaharia93/load_balancer:latest'
       } 
 }
 pipeline{
