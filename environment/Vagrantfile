@@ -51,8 +51,6 @@ Vagrant.configure("2") do |config|
       sudo yum update -y
       sudo yum config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
       sudo yum install docker-ce --nobest -y
-      sudo systemctl start jenkins.service
-      sudo systemctl enable jenkins.service
       sudo yum update -y
 
       SHELL
