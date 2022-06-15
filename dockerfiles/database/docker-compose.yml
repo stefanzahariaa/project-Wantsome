@@ -16,7 +16,7 @@ services:
     container_name: pgadmin4_container
     restart: always
     ports:
-      - "80:8081"
+      - "8081:80"
     environment:
       PGADMIN_DEFAULT_EMAIL: user@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
