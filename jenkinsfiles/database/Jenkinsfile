@@ -28,8 +28,9 @@ pipeline{
       stage('Deploy'){
          steps{
             sshagent(credentials:['environment-server']){
-               sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11'
-               sh 'docker pull stefanzaharia93/database2:latest'
+               sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11 docker pull stefanzaharia93/database2:latest'
+               sh 'scp -r ./dockerfiles/database/docker-compose.yml env@192.168.56.11:/home/env/'
+               sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11 docker compose -f /home/env/docker-compose.yml up -d'
           }
         echo "Success deploy"
          }
