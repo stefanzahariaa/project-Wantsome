@@ -30,7 +30,7 @@ node{
             sshagent(credentials:['environment-server']){
                sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11 docker pull stefanzaharia93/application2:latest'
                sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11 docker run --name application2 -d -p 8082:80 stefanzaharia93/application2:latest'
-               sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11 docker run --name application2 -d -p 8083:80 stefanzaharia93/application2:latest'
+               sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11 docker run --name application3 -d -p 8083:80 stefanzaharia93/application2:latest'
                }
         echo "Success deploy"
          }
