@@ -28,8 +28,8 @@ pipeline{
       stage('Deploy'){
          steps{
             sshagent(credentials:['environment-server']){
-               sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11 docker pull stefanzaharia93/load_balancer:latest' 
-               sh 'docker run --name load_balancer -d -p 80:8089 stefanzaharia93/load_balancer:latest'
+               sh 'ssh -o StrictHostKeyChecking=no env@192.168.56.11 docker pull stefanzaharia93/load_balancer:latest \ 
+                   docker run --name load_balancer -d -p 80:80 stefanzaharia93/load_balancer:latest'
           }
         echo "Success deploy"
          }
